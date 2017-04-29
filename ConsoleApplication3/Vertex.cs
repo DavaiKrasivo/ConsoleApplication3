@@ -10,14 +10,13 @@ namespace ConsoleApplication3
     {
         public int Number;
         public bool flag = false;
-        public Edge[] AdjEdge;
-        public Vertex(int num, Edge[] Adj)
+        public Vertex(int num)
         {
             Number = num;
-            AdjEdge = SortArray(Adj);
         }
-        public Vertex GetMin()
+        public Vertex GetMin(List<Edge> Adj)
         {
+            Edge[] AdjEdge = SortArray(Adj.ToArray());
             foreach (var temp in AdjEdge)
             {
                 if (temp.a.Number == this.Number)
@@ -25,7 +24,7 @@ namespace ConsoleApplication3
                     if (temp.b.flag == false)
                         return temp.b;
                 }  
-                else
+                else if(temp.b.Number == this.Number)
                 {
                     if (temp.a.flag == false)
                         return temp.a;
@@ -37,10 +36,10 @@ namespace ConsoleApplication3
         {
             int f = 0;
             Edge temp;
-            for (int i = 0;i < Arr.Length-1; i ++)
+            for (int i = 1;i < Arr.Length-1; i ++)
             {
                 f = 0;
-                for (int j = 1; j < Arr.Length - i; j++)
+                for (int j = 0; j < Arr.Length - i; j++)
                 {
                     if (Arr[j].length > Arr[j + 1].length)
                     {
@@ -49,8 +48,8 @@ namespace ConsoleApplication3
                         Arr[j + 1] = temp;
                         f = 1;
                     }
-                    if (f == 0) break;
                 }
+                if (f == 0) break;
             }
             return Arr;
         }
