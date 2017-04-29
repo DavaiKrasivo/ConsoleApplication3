@@ -10,27 +10,28 @@ namespace ConsoleApplication3
     {
         public int Number;
         public bool flag = false;
-        public int CountAdjVer;
-        public int[] AdjVer;
-        public Vertex(int num,int[] adj)
+        public Edge[] AdjEdge;
+        public Vertex(int num)
         {
             Number = num;
-            AdjVer = SortArray(adj);
         }
         public int GetMin()
         {
-            return AdjVer[0];
+            foreach (var temp in AdjEdge)
+            {
+                
+            }
         }
-        private int[] SortArray(int[] Arr)
+        private Edge[] SortArray(Edge[] Arr)
         {
             int f = 0;
-            int temp;
+            Edge temp;
             for (int i = 0;i < Arr.Length-1; i ++)
             {
                 f = 0;
                 for (int j = 1; j < Arr.Length - i; j++)
                 {
-                    if (Arr[j] > Arr[j + 1])
+                    if (Arr[j].length > Arr[j + 1].length)
                     {
                         temp = Arr[j];
                         Arr[j] = Arr[j + 1];
