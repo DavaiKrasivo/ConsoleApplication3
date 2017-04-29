@@ -11,16 +11,27 @@ namespace ConsoleApplication3
         public int Number;
         public bool flag = false;
         public Edge[] AdjEdge;
-        public Vertex(int num)
+        public Vertex(int num, Edge[] Adj)
         {
             Number = num;
+            AdjEdge = SortArray(Adj);
         }
-        public int GetMin()
+        public Vertex GetMin()
         {
             foreach (var temp in AdjEdge)
             {
-                
+                if (temp.a.Number == this.Number)
+                {
+                    if (temp.b.flag == false)
+                        return temp.b;
+                }  
+                else
+                {
+                    if (temp.a.flag == false)
+                        return temp.a;
+                } 
             }
+            return null;
         }
         private Edge[] SortArray(Edge[] Arr)
         {
